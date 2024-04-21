@@ -77,9 +77,25 @@ def main(args):
     
     if args.scheduler != 'none':
         if args.scheduler in ['cos', 'linear']:
-            scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer=opt, max_lr=args.lr, total_steps=args.iterations, 
-                                                            pct_start=args.warmup_percent, anneal_strategy=args.scheduler, 
-                                                            cycle_momentum=False, div_factor=1e2, final_div_factor=.1)
+            # scheduler = torch.optim.lr_scheduler.OneCycleLR(optimizer=opt, max_lr=args.lr, total_steps=args.iterations, 
+            #                                                 pct_start=args.warmup_percent, anneal_strategy=args.scheduler, 
+            #                                                 cycle_momentum=False, div_factor=1e2, final_div_factor=.1)
+
+            scheduler = torch.optim.lr_scheduler.CyclicLR(
+                opt,
+                0.1 * args.lr,
+                args.lr,
+                step_size_up=2000,
+                step_size_down=None,
+                mode="exp_range",
+                gamma=1.0,
+                scale_fn=None,
+                scale_mode="cycle",
+                cycle_momentum=False,
+                base_momentum=0.8,
+                max_momentum=0.9,
+                last_epoch=-1,
+            )
         else:
             raise NotImplementedError(f"Unknown scheduler type: {args.scheduler}.")
     else:
