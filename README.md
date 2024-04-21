@@ -29,7 +29,6 @@ The final command to run on `NVIDIA A100-SXM4-40GB`:
 ```sh
 python ./src/main.py --config_format base --wandb --wandb_project LLM --model llama2 --seed 123 --batch_size 80  --sequence_length 384
 
---n_layer 4 --n_head 4
 ```
 Model wieghts can be downloaded from [here](https://drive.google.com/drive/folders/1BDzHfSDK2o2LcwYCVEatGHgD1w6g4TL1?usp=sharing).
 
