@@ -31,9 +31,10 @@ python ./src/main.py --config_format base --wandb --wandb_project LLM --model ll
 
 --n_layer 4 --n_head 4
 ```
-link to wandb report.
 Model wieghts can be downloaded from [here](https://drive.google.com/drive/folders/1BDzHfSDK2o2LcwYCVEatGHgD1w6g4TL1?usp=sharing).
+
 link to wandb [report](https://api.wandb.ai/links/hokarami/mzioc2ef).
+
 We have also explored some other ideas, which were not effective in our case:
 - We tried using MoE framework, however, it seems that the model was too large for the given resources.
 - We used `GradScaler` from `torch.cuda.amp`, but it lead to nan loss in the middle of training
